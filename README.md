@@ -1,3 +1,3 @@
 ## Toolbox
 
-### Helper package to make your life easier
+### Helper package to help your programming activity
