@@ -3,6 +3,7 @@
 ### Helper package to help your programming activity
 
 1. [HTTP Request](#http-request)
+2. [Circuit Breaker](#circuit-breaker)
 
 ---
 
@@ -42,4 +43,24 @@ err = httpRequestInst.Post("https://jsonplaceholder.typicode.com/posts",
         "shinigami": "ichigo kurosaki, byakuya kuchiki, renji abarai!",
     }, nil, &postResp,
 )
+```
+
+---
+
+### <a name="#circuit-breaker">Circuit Breaker</a>
+- This package using `github.com/rubyist/circuitbreaker`
+- This package provide wrapper function for circuit breaker.
+- Parameter: `func WrapProcess(breaker *circuit.Breaker, processFunc func() error) error`
+    - breaker: rubyist/circuitbreaker
+    - processFunc: main function that will process
+- Example: 
+```
+err := circuitWrap.WrapProcess(breaker, func() error {
+    err := httpRequestInst.Get(apiURL, http.Header{}, map[string]string{
+        "country": country,
+        "apikey":  apiKey,
+    }, &articleResp)
+
+    return err
+})
 ```
