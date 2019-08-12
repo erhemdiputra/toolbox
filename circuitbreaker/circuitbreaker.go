@@ -6,7 +6,7 @@ import (
 	circuit "github.com/rubyist/circuitbreaker"
 )
 
-func CircuitBreakerWrap(breaker *circuit.Breaker, processFunc func() error) error {
+func WrapProcess(breaker *circuit.Breaker, processFunc func() error) error {
 	if breaker.Ready() {
 		err := processFunc()
 		if err != nil {
